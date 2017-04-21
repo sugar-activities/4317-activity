@@ -1,0 +1,27 @@
+#!/bin/sh
+while [ -n "$2" ] ; do
+     case "$1" in
+         -b | --bundle-id)     export SUGAR_BUNDLE_ID="$2" ;;
+         -a | --activity-id)   export SUGAR_ACTIVITY_ID="$2" ;;
+         -o | --object-id)     export SUGAR_OBJECT_ID="$2" ;;
+         -u | --uri)           export SUGAR_URI="$2" ;;
+         *) echo unknown argument $1 $2 ;;
+     esac
+     shift;shift
+done
+export GSETTINGS_SCHEMA_DIR=$SUGAR_BUNDLE_PATH/schemas
+glib-compile-schemas $SUGAR_BUNDLE_PATH/schemas
+export NET_WM_NAME="GTranslator"
+if [ "`uname -a | grep x86_64`" ]; then
+    export LD_PRELOAD=$SUGAR_BUNDLE_PATH/lib64/libsugarize.so
+    export LD_LIBRARY_PATH=$SUGAR_BUNDLE_PATH/lib64:$LD_LIBRARY_PATH
+    exec gtranslator64
+elif [ "`uname -a | grep armv7l`" ]; then
+    export LD_PRELOAD=$SUGAR_BUNDLE_PATH/lib_arn/libsugarize.so
+    export LD_LIBRARY_PATH=$SUGAR_BUNDLE_PATH/lib_arm:$LD_LIBRARY_PATH
+    exec gtranslator_arm
+else
+    export LD_PRELOAD=$SUGAR_BUNDLE_PATH/lib32/libsugarize.so
+    export LD_LIBRARY_PATH=$SUGAR_BUNDLE_PATH/lib32:$LD_LIBRARY_PATH
+    exec gtranslator32
+fi

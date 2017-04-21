@@ -1,0 +1,7 @@
+[Activity]
+name = GTranslator
+bundle_id = org.x.GTranslator
+icon = GTranslator
+activity_version = 2
+show_launcher = yes
+exec = sugarGTranslator

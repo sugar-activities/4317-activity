@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/org/gnome/gtranslator/plugins/dictionary/" id="org.gnome.gtranslator.plugins.dictionary" gettext-domain="gtranslator">
+    <key type="s" name="database">
+      <default>'*'</default>
+      <summary>Database</summary>
+      <description>Word database</description>
+    </key>
+    <key type="s" name="source-name">
+      <default>'Default'</default>
+      <summary>Source Name</summary>
+    </key>
+    <key type="s" name="strategy">
+      <default>'.'</default>
+      <summary>Strategy</summary>
+    </key>
+    <key type="i" name="panel-position">
+      <default>200</default>
+      <summary>Panel Position</summary>
+    </key>
+  </schema>
+</schemalist>
